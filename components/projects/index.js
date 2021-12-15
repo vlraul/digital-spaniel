@@ -7,12 +7,18 @@ import CardList from "./CardList";
 import Heading from "../common/Heading";
 
 const Wrapper = styled.div`
-  padding: clamp(50px, calc(50px + 100 * ((100vw - 768px) / 1152)), 150px)
-  clamp(100px, calc(100px + 200 * ((100vw - 768px) / 1152)), 300px)
-;
+  padding: clamp(100px, calc(100px + 100 * ((100vw - 1280px) / 640)), 150px)
+           clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px)
+  ;
+  max-width: 1920px;
+  margin: 0 auto;
   
   .tab-content > .fade {
     transition: 0.3s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+    padding: 50px;
   }
 `;
 
@@ -23,14 +29,17 @@ const Tab = styled(Tab_)`
 const Tabs = styled(Tabs_)`
   display: flex;
   flex-direction: row;
-  //gap: 24px;
-  font-size: 20px;
+  font-size: clamp(16px, calc(16px + 4 * ((100vw - 1280px) / 640)), 20px);
   border: none;
-  padding: 72px 0 36px 0;
+  padding: clamp(48px, calc(48px + 24 * ((100vw - 1280px) / 640)), 72px) 0
+           clamp(12px, calc(12px + 12 * ((100vw - 1280px) / 640)), 24px) 0
+  ;
   
   .nav-link {
     color: #19293A;
-    padding: 0 36px 0 36px;
+    padding: 0 clamp(24px, calc(24px + 12 * ((100vw - 1280px) / 640)), 36px)
+             0 clamp(24px, calc(24px + 12 * ((100vw - 1280px) / 640)), 36px)
+    ;
     border: none;
     border-bottom: 1px solid #506473;
   }

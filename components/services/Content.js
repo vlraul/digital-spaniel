@@ -9,7 +9,7 @@ import Description_ from "../common/Description";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: clamp(20px, calc(20px + 20 * ((100vw - 1280px) / 640)), 40px);
   align-self: center;
   margin-right: auto;
 `;
