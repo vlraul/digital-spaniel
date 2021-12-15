@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Heading from "../common/Heading";
 import Link from "next/link";
 import Anchor from "../common/Anchor";
-import styled from "styled-components";
-import Description from "../common/Description";
+import styled, { css } from "styled-components";
+import Description_ from "../common/Description";
 
 
 const Wrapper = styled.div`
@@ -14,7 +14,37 @@ const Wrapper = styled.div`
   margin-right: auto;
 `;
 
-function Content ({ activeSection }) {
+const Description = styled(Description_)`
+  opacity: 0;
+
+  ${({isAnimating}) => isAnimating && css`
+    animation: fadeIn 0.3s forwards;
+  `}
+  ${({isAnimating}) => !isAnimating && css`
+    animation: fadeOut 0.3s forwards;
+  `}
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  };
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  };
+`;
+
+function Content ({ activeSection, isAnimating }) {
+
   if (!activeSection) {
     return null;
   }
@@ -26,7 +56,7 @@ function Content ({ activeSection }) {
         <br/>
         we capable of
       </Heading>
-      <Description>
+      <Description isAnimating={isAnimating}>
         {activeSection.description}
       </Description>
       <Link href={'/'} passHref>

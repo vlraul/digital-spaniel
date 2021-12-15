@@ -13,6 +13,10 @@ const Anchor = styled(Anchor_)`
 
   &:after {
     background-color: white;
+  }
+  :hover {
+    color: white;
+  }
 `;
 
 const Wrapper = styled.div`

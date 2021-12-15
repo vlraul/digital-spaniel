@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Anchor = styled.a`
   font-family: 'Open Sans', sans-serif;
   font-size: 20px;
+  font-weight: 600;
   margin-right: auto;
   color: #19293A;
 
@@ -16,9 +17,10 @@ const Anchor = styled.a`
     bottom: -3px;
     width: 0;
     height: 2px;
-    transition: 0.2s ease width;
+    transition: 0.3s ease width;
   }
   &:hover {
+    color: #19293A;
     text-decoration: none;
     cursor: pointer;
     

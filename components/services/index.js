@@ -7,7 +7,7 @@ import ServicesList from "./List";
 
 const Wrapper = styled.div`
   background-color: #EDEFF1;
-  padding: 300px 300px 0 300px;
+  padding: 150px 300px 150px 300px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 `;
@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 function Services() {
   const [activeSection, setActiveSection] = useState(0);
   const [activeCategory, setActiveCategory] = useState('brand');
+  const [isAnimating, setIsAnimating] = useState(false);
   const { data, loading } = useFetch('/api/services');
 
   if (!data) {
@@ -23,7 +24,7 @@ function Services() {
 
   return (
     <Wrapper>
-      <Content activeSection={data[activeCategory][activeSection]} />
+      <Content activeSection={data[activeCategory][activeSection]} isAnimating={isAnimating}/>
       <ServicesList
         onChange={(key, index) => {
           setActiveSection(index);
@@ -31,6 +32,8 @@ function Services() {
         }}
         data={data}
         active={activeSection}
+        startAnimation={() => setIsAnimating(true)}
+        stopAnimation={() => setIsAnimating(false)}
       />
     </Wrapper>
   );
