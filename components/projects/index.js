@@ -7,7 +7,9 @@ import CardList from "./CardList";
 import Heading from "../common/Heading";
 
 const Wrapper = styled.div`
-  padding: 100px 300px 100px 300px;
+  padding: clamp(50px, calc(50px + 100 * ((100vw - 768px) / 1152)), 150px)
+  clamp(100px, calc(100px + 200 * ((100vw - 768px) / 1152)), 300px)
+;
   
   .tab-content > .fade {
     transition: 0.3s ease-in-out;

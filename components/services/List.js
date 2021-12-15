@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  padding-left: 60px;
+  padding-left: clamp(30px, calc(30px + 30 * ((100vw - 768px) / 1152)), 60px);;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  column-gap: 120px;
-  row-gap: 60px;
+  column-gap: clamp(60px, calc(60px + 120 * ((100vw - 768px) / 1152)), 120px);
+  row-gap: clamp(30px, calc(30px + 30 * ((100vw - 768px) / 1152)), 60px);;
 `;
 
 const Category = styled.p`
-  font-size: 21px;
+  font-size: clamp(16px, calc(16px + 5 * ((100vw - 768px) / 1152)), 21px);
   font-weight: 500;
   text-transform: uppercase;
   color: #19293A;
@@ -27,7 +27,7 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  font-size: 21px;
+  font-size: clamp(16px, calc(16px + 5 * ((100vw - 768px) / 1152)), 21px);
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;

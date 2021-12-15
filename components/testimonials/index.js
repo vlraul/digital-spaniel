@@ -3,10 +3,20 @@ import useFetch from "../hooks/useFetch";
 import styled from "styled-components";
 import SocialProofCard from "./SocialProofCard";
 import Indicator from "./Indicator";
-import Heading from "../common/Heading";
+import Heading_ from "../common/Heading";
 
 const Wrapper = styled.div`
-  padding: 100px 300px 100px 300px;
+  padding: clamp(50px, calc(50px + 50 * ((100vw - 768px) / 1152)), 100px)
+           clamp(100px, calc(100px + 140 * ((100vw - 768px) / 1152)), 240px)
+  ;
+`;
+
+const Heading = styled(Heading_)`
+  padding-left: 60px;
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+  }
 `;
 
 const Container = styled.div`
@@ -14,14 +24,18 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-top: 100px;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const Indicators = styled.div`
-  padding: 48px;
+  padding: clamp(60px, calc(60px + 60 * ((100vw - 768px) / 1152)), 120px);
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 24px;
+  gap: 48px;
 `;
 
 
