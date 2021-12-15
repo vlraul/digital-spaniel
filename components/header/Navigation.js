@@ -22,6 +22,10 @@ const Anchor = styled(Anchor_)`
 const Wrapper = styled.div`
   display: flex;
   gap: 64px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 function Navigation () {

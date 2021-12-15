@@ -16,12 +16,11 @@ const HeroImage = styled.img`
   position: relative;
 `;
 
-const HeroDescription = styled.div`
-  //padding-left: clamp(100px, calc(100px + 200 * ((100vw - 768px) / 1152)), 300px);
-  padding-left: 300px;
+const HeroContent = styled.div`
+  padding-left: clamp(100px, calc(100px + 200 * ((100vw - 768px) / 1152)), 300px);
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: clamp(20px, calc(20px + 20 * ((100vw - 768px) / 1152)), 40px);
   align-self: center;
   margin-right: auto;
 `;
@@ -35,7 +34,7 @@ const Tags = styled.p`
 
 
 const Description = styled.p`
-  font-size: 21px;
+  font-size: clamp(16px, calc(16px + 5 * ((100vw - 768px) / 1152)), 21px);
   max-width: 400px;
   margin: 0;
 `;
@@ -48,7 +47,7 @@ const Link = styled(Link_)`
 function Hero () {
   return (
     <Wrapper>
-      <HeroDescription>
+      <HeroContent>
         <Tags>
           BRAND, DEV, ECOM, MARKETING
         </Tags>
@@ -66,7 +65,7 @@ function Hero () {
             Let's talk
           </Anchor>
         </Link>
-      </HeroDescription>
+      </HeroContent>
       <HeroImage src={'/images/spaniel.png'}/>
     </Wrapper>
   )

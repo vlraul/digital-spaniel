@@ -7,7 +7,9 @@ import ServicesList from "./List";
 
 const Wrapper = styled.div`
   background-color: #EDEFF1;
-  padding: 150px 300px 150px 300px;
+  padding: clamp(50px, calc(50px + 100 * ((100vw - 768px) / 1152)), 150px)
+           clamp(100px, calc(100px + 200 * ((100vw - 768px) / 1152)), 300px)
+  ;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 `;

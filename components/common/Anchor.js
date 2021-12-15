@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Anchor = styled.a`
   font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
+  font-size: clamp(14px, calc(14px + 6 * ((100vw - 768px) / 1152)), 20px);
   font-weight: 600;
   margin-right: auto;
   color: #19293A;

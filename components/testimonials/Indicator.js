@@ -2,8 +2,8 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Dot = styled.button`
-  width: 24px;
-  height: 24px;
+  width: clamp(18px, calc(18px + 6 * ((100vw - 768px) / 1152)), 24px);
+  height: clamp(18px, calc(18px + 6 * ((100vw - 768px) / 1152)), 24px);
   border-radius: 20px;
   border: none;
   background-color: #C5C9CD;
