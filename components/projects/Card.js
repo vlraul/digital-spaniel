@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   min-width: 200px;
   min-height: 200px;
-  @media (min-width: 1470px) {
+  @media (min-width: 1071px) {
   ${({ isDouble }) => isDouble && css`
       grid-column-end: span 2;
   `};

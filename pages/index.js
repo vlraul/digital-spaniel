@@ -6,6 +6,7 @@ import Hero from "../components/hero";
 import Services from "../components/services";
 import Projects from "../components/projects";
 import Testimonial from "../components/testimonials";
+import About from "../components/about";
 
 const Wrapper = styled.div`
 
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero />
         <Services />
         <Projects />
+        <About />
         <Testimonial />
       </Wrapper>
     </Layout>

@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import Navigation from "./Navigation";
 import dynamic from 'next/dynamic';
 
 const Logo = styled.img`
-  height: 80px;
+  height: clamp(60px, calc(60px + 20 * ((100vw - 1280px) / 640)), 80px);
 `
 
 const Wrapper = styled.div`
   width: 100%;
   height: 120px;
   display: flex;
-  position: absolute;
-  left: 0;
-  top: 0;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 172px 32px 172px;
+  padding: 32px 100px;
   z-index: 1;
+  max-width: 1920px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    position: static;
+    padding: 32px 50px;
+  }
   
 `;
 
@@ -26,28 +30,22 @@ const StickyHeadroom = dynamic(
   { ssr: false}
 )
 
-class Header extends React.Component {
-  state = {
-    stickyTop: 0,
+function Header() {
+  const [stickyTop, setStickyTop] = useState(0);
+
+  const onStickyTopChanged = (stickyTop) => {
+    setStickyTop(stickyTop)
   }
 
-  onStickyTopChanged = (stickyTop) => {
-    this.setState({ stickyTop })
-  }
-
-
-render() {
-    return (
-      <StickyHeadroom pinStart={0} height={144} scrollHeight={144}
-                      onStickyTopChanged={this.onStickyTopChanged}>
-        <Wrapper>
-          <Logo src={'/images/digital-spaniel-logo.png'} />
-          <Navigation />
-        </Wrapper>
-      </StickyHeadroom>
-      )
-}
-
+  return (
+    <StickyHeadroom pinStart={0} height={144} scrollHeight={144}
+                    onStickyTopChanged={onStickyTopChanged}>
+      <Wrapper>
+        <Logo src={'/images/digital-spaniel-logo.png'} />
+        <Navigation />
+      </Wrapper>
+    </StickyHeadroom>
+  )
 
 }
 

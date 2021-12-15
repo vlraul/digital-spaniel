@@ -15,7 +15,6 @@ const Dot = styled.button`
 `;
 
 function Indicator({ index, activeIndex, updateIndex }) {
-  console.log(activeIndex)
 
   return (
     <Dot

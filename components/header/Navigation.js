@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import _Link from 'next/link';
+import Link from 'next/link';
 import Anchor_ from "../common/Anchor";
-
-const Link = styled(_Link)`
-
-
-`;
 
 const Anchor = styled(Anchor_)`
   color: white;
@@ -21,7 +16,7 @@ const Anchor = styled(Anchor_)`
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 64px;
+  gap: clamp(32px, calc(32px + 16 * ((100vw - 1280px) / 640)), 48px);
 
   @media (max-width: 768px) {
     display: none;

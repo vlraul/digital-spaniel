@@ -6,13 +6,19 @@ import Indicator from "./Indicator";
 import Heading_ from "../common/Heading";
 
 const Wrapper = styled.div`
-  padding: clamp(50px, calc(50px + 50 * ((100vw - 768px) / 1152)), 100px)
-           clamp(100px, calc(100px + 140 * ((100vw - 768px) / 1152)), 240px)
+  padding: clamp(50px, calc(50px + 50 * ((100vw - 1280px) / 640)), 100px)
+           clamp(80px, calc(80px + 160 * ((100vw - 1280px) / 640)), 240px)
   ;
+  max-width: 1920px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 50px;
+  }
 `;
 
 const Heading = styled(Heading_)`
-  padding-left: 60px;
+  padding-left: clamp(20px, calc(20px + 40 * ((100vw - 1280px) / 640)), 60px);
 
   @media (max-width: 768px) {
     padding-left: 0;
@@ -42,7 +48,6 @@ const Indicators = styled.div`
 function Testimonial() {
   const { data, loading } = useFetch('/api/testimonials');
   const [activeIndex, setActiveIndex] = useState(1);
-  console.log(activeIndex);
 
   if(!data) {
     return null;

@@ -6,12 +6,22 @@ import ServicesList from "./List";
 
 
 const Wrapper = styled.div`
-  background-color: #EDEFF1;
-  padding: clamp(50px, calc(50px + 100 * ((100vw - 768px) / 1152)), 150px)
-           clamp(100px, calc(100px + 200 * ((100vw - 768px) / 1152)), 300px)
+  padding: clamp(100px, calc(100px + 100 * ((100vw - 1280px) / 640)), 150px)
+           clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px)
   ;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  max-width: 1920px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 50px;
+  }
+`;
+
+const Background = styled.div`
+  width: 100%;
+  background-color: #EDEFF1;
 `;
 
 function Services() {
@@ -25,19 +35,21 @@ function Services() {
   }
 
   return (
-    <Wrapper>
-      <Content activeSection={data[activeCategory][activeSection]} isAnimating={isAnimating}/>
-      <ServicesList
-        onChange={(key, index) => {
-          setActiveSection(index);
-          setActiveCategory(key);
-        }}
-        data={data}
-        active={activeSection}
-        startAnimation={() => setIsAnimating(true)}
-        stopAnimation={() => setIsAnimating(false)}
-      />
-    </Wrapper>
+    <Background>
+      <Wrapper>
+        <Content activeSection={data[activeCategory][activeSection]} isAnimating={isAnimating}/>
+        <ServicesList
+          onChange={(key, index) => {
+            setActiveSection(index);
+            setActiveCategory(key);
+          }}
+          data={data}
+          active={activeSection}
+          startAnimation={() => setIsAnimating(true)}
+          stopAnimation={() => setIsAnimating(false)}
+        />
+      </Wrapper>
+    </Background>
   );
 };
 
