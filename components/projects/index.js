@@ -1,32 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
-import Tabs_ from 'react-bootstrap/Tabs';
-import Tab_ from 'react-bootstrap/Tab'
+import OriginalTabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab'
 import CardList from "./CardList";
 import Heading from "../common/Heading";
+import OriginalWrapper from "../common/Wrapper";
 
-const Wrapper = styled.div`
-  padding: clamp(100px, calc(100px + 100 * ((100vw - 1280px) / 640)), 150px)
-           clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px)
-  ;
-  max-width: 1920px;
-  margin: 0 auto;
-  
+const Wrapper = styled(OriginalWrapper)`
   .tab-content > .fade {
     transition: 0.3s ease-in-out;
   }
-
-  @media (max-width: 768px) {
-    padding: 50px;
-  }
 `;
 
-const Tab = styled(Tab_)`
 
-`;
-
-const Tabs = styled(Tabs_)`
+const Tabs = styled(OriginalTabs)`
   display: flex;
   flex-direction: row;
   font-size: clamp(16px, calc(16px + 4 * ((100vw - 1280px) / 640)), 20px);
@@ -57,16 +45,13 @@ const Tabs = styled(Tabs_)`
 
 function Projects() {
   const { data, loading } = useFetch('/api/projects');
-  const [key, setKey] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('all');
 
-
-
-
-  if(!data){
+  if (!data){
     return null;
   }
 
-  const keys = Object.keys(data);
+  const categories = Object.keys(data);
 
   return (
     <Wrapper>
@@ -76,15 +61,15 @@ function Projects() {
         recent projects
       </Heading>
       <Tabs
-        activeKey={key}
+        activeKey={activeCategory}
         transition={true}
-        onSelect={(e) => setKey(e)}
+        onSelect={(e) => setActiveCategory(e)}
         className="mb-3"
       >
         {
-          keys.map((key, index) => (
-            <Tab eventKey={key} title={data[key].categoryName} key={index}>
-              <CardList data={data[key].data}/>
+          categories.map((category, index) => (
+            <Tab eventKey={category} title={data[category].categoryName} key={index}>
+              <CardList data={data[category].data}/>
             </Tab>
           ))
         }

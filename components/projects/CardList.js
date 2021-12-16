@@ -17,10 +17,6 @@ const GridContainer = styled.div`
 
 function CardList ({ data }) {
 
-  if(!data){
-    return null;
-  }
-
   return (
     <Wrapper>
       <GridContainer>
@@ -30,6 +26,6 @@ function CardList ({ data }) {
       </GridContainer>
     </Wrapper>
   )
-}
+};
 
 export default CardList;

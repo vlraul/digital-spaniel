@@ -1,7 +1,7 @@
 import React from "react";
 import styled, {css} from "styled-components";
 import Link from 'next/link';
-import Anchor_ from "../common/Anchor";
+import OriginalAnchor from "../common/Anchor";
 
 const Wrapper = styled.div`
   display: block;
@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   min-width: 200px;
   min-height: 200px;
+  
   @media (min-width: 1071px) {
   ${({ isDouble }) => isDouble && css`
       grid-column-end: span 2;
@@ -55,7 +56,7 @@ const Description = styled.p`
   font-size: 18px;
 `;
 
-const Anchor = styled(Anchor_)`
+const Anchor = styled(OriginalAnchor)`
   color: white;
 
   &:after {
@@ -68,10 +69,6 @@ const Anchor = styled(Anchor_)`
 
 
 function Card ({ data }) {
-
-  if(!data){
-    return null;
-  }
 
   return (
     <Wrapper isDouble={data.isDouble}>

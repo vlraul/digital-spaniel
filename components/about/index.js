@@ -1,23 +1,38 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Heading_ from "../common/Heading";
+import OriginalHeading from "../common/Heading";
 import useFetch from "../hooks/useFetch";
 import Gallery from "./Gallery";
-import Anchor_ from "../common/Anchor";
+import OriginalAnchor from "../common/Anchor";
 import Link from "next/link";
-
-const Wrapper = styled.div`
-  padding: clamp(50px, calc(50px + 100 * ((100vw - 1280px) / 640)), 150px) 0;
-  
-`;
+import Wrapper from "../common/Wrapper";
 
 const Background = styled.div`
-  width: 100%;
-  background-color: #EDEFF1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding: 150px 0;
+
+  :before {
+    content: '';
+    background-color: #EDEFF1;
+    width: 100vw;
+    left: calc(50% - 50vw);
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  @media (max-width: 768px) {
+   padding: 50px 0;
+  }
+
 `;
 
-const Heading = styled(Heading_)`
-  padding: 0 clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px);
+const Heading = styled(OriginalHeading)`
   max-width: 1920px;
   margin: 0 auto 64px auto;
   
@@ -29,21 +44,26 @@ const Heading = styled(Heading_)`
 const Container = styled.div`
   display: flex;
   gap: 12px;
-  padding: 0 clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px) 
-           50px clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px)
-  ;
   height: 100%;
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 0 50px 50px 50px;
+  }
 `;
 
-const Anchor = styled(Anchor_)`
+const Anchor = styled(OriginalAnchor)`
   margin-right: 0;
 `;
 
 function About() {
   const { data, loading } = useFetch('api/gallery');
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <Wrapper>

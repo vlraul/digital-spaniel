@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import styled from "styled-components";
 import SocialProofCard from "./SocialProofCard";
 import Indicator from "./Indicator";
-import Heading_ from "../common/Heading";
+import OriginalHeading from "../common/Heading";
 
 const Wrapper = styled.div`
   padding: clamp(50px, calc(50px + 50 * ((100vw - 1280px) / 640)), 100px)
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Heading = styled(Heading_)`
+const Heading = styled(OriginalHeading)`
   padding-left: clamp(20px, calc(20px + 40 * ((100vw - 1280px) / 640)), 60px);
 
   @media (max-width: 768px) {
@@ -49,7 +49,7 @@ function Testimonial() {
   const { data, loading } = useFetch('/api/testimonials');
   const [activeIndex, setActiveIndex] = useState(1);
 
-  if(!data) {
+  if (!data) {
     return null;
   }
 
@@ -62,12 +62,12 @@ function Testimonial() {
       </Heading>
       <Container>
         {
-          data.map((item, index) => <SocialProofCard data={item} index={index} activeIndex={activeIndex} />)
+          data.map((item, index) => <SocialProofCard data={item} index={index} activeIndex={activeIndex} key={index}/>)
         }
       </Container>
       <Indicators>
         {
-          data.map((item, index) => <Indicator index={index} activeIndex={activeIndex} updateIndex={(index) => setActiveIndex(index)}/> )
+          data.map((item, index) => <Indicator index={index} activeIndex={activeIndex} updateIndex={(index) => setActiveIndex(index)} key={index}/> )
         }
       </Indicators>
     </Wrapper>

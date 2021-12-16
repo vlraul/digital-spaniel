@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from 'next/link';
-import Anchor_ from "../common/Anchor";
+import OriginalAnchor from "../common/Anchor";
 
-const Anchor = styled(Anchor_)`
+const Anchor = styled(OriginalAnchor)`
   color: white;
 
   &:after {
@@ -12,6 +12,17 @@ const Anchor = styled(Anchor_)`
   :hover {
     color: white;
   }
+  
+  ${({invertTextColor}) => invertTextColor && css`
+    color: #19293A;
+
+    &:after {
+      background-color: #19293A;
+    }
+    :hover {
+      color: #19293A;
+    }
+  `};
 `;
 
 const Wrapper = styled.div`
@@ -21,33 +32,34 @@ const Wrapper = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+  
 `;
 
-function Navigation () {
+function Navigation({ invertTextColor }) {
   return (
-    <Wrapper>
+    <Wrapper >
       <Link href={'/'} passHref>
-        <Anchor>
+        <Anchor invertTextColor={invertTextColor}>
           Services
-        </Anchor>
+        </Anchor >
       </Link>
       <Link href={'/'} passHref>
-        <Anchor>
+        <Anchor invertTextColor={invertTextColor}>
           Work
         </Anchor>
       </Link>
       <Link href={'/'} passHref>
-        <Anchor>
+        <Anchor invertTextColor={invertTextColor}>
           About
         </Anchor>
       </Link>
       <Link href={'/'} passHref>
-        <Anchor>
+        <Anchor invertTextColor={invertTextColor}>
           Blog
         </Anchor>
       </Link>
       <Link href={'/'} passHref>
-        <Anchor>
+        <Anchor invertTextColor={invertTextColor}>
           Contact
         </Anchor>
       </Link>

@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Link from 'next/link';
-import Heading_ from "../common/Heading";
-import Anchor_ from "../common/Anchor";
+import OriginalHeading from "../common/Heading";
+import OriginalAnchor from "../common/Anchor";
+import useFetch from "../hooks/useFetch";
 
 const Wrapper = styled.div`
   display: grid;
@@ -16,18 +17,18 @@ const Wrapper = styled.div`
   }
 `;
 
-const Heading = styled(Heading_)`
+const Heading = styled(OriginalHeading)`
 
   @media (max-width: 768px) {
     span {
-      -webkit-text-fill-color: #C0345E; /* Will override color (regardless of order) */
+      -webkit-text-fill-color: #C0345E;
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: rgba(54, 54, 54, 0.49);
     }
   }
 `;
 
-const Anchor = styled(Anchor_)`
+const Anchor = styled(OriginalAnchor)`
   @media (max-width: 768px) {
     color: white;
     :hover {
@@ -85,11 +86,17 @@ const Description = styled.p`
 
 
 function Hero () {
+  const { data, loading } = useFetch('api/hero');
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <Wrapper>
       <HeroContent>
         <Tags>
-          BRAND, DEV, ECOM, MARKETING
+          {data.tags}
         </Tags>
         <Heading>
           <span>We unleash</span>
@@ -97,18 +104,18 @@ function Hero () {
           business potential
         </Heading>
         <Description>
-          We create brand experiences which are memorable and distinct.
-          Our experienced team create and develop brands with personality and resonance.
+          {data.description}
         </Description>
-        <Link href={'/'} passHref>
+        <Link href={data.link} passHref>
           <Anchor>
             Let's talk
           </Anchor>
         </Link>
       </HeroContent>
-      <HeroImage src={'/images/spaniel.png'}/>
+      <HeroImage src={data.image}/>
     </Wrapper>
   )
-}
+
+};
 
 export default Hero;

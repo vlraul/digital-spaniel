@@ -54,9 +54,6 @@ const Position = styled.p`
 `;
 
 function SocialProofCard({ data, index, activeIndex}) {
-  if(!data) {
-    return null;
-  }
 
   return (
     <Wrapper activeIndex={activeIndex} index={index}>
