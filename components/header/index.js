@@ -34,7 +34,6 @@ const Wrapper = styled.div`
   `};
 
   @media (max-width: 768px) {
-    //background-color: #EDEFF1;
     position: static;
     padding: 32px 50px;
   }

@@ -48,7 +48,7 @@ const Name = styled.p`
   font-size: clamp(16px, calc(16px + 5 * ((100vw - 1280px) / 640)), 21px);
   font-weight: 700;
 `;
-1280
+
 const Position = styled.p`
   font-size: clamp(16px, calc(16px + 5 * ((100vw - 1280px) / 640)), 21px);
 `;
