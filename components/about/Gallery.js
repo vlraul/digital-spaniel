@@ -2,18 +2,6 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
-  padding: clamp(50px, calc(50px + 100 * ((100vw - 1280px) / 640)), 150px)
-           clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px)
-  ;
-  max-width: 1920px;
-  margin: 0 auto;
-
-  @media (max-width: 768px) {
-    padding: 50px;
-  }
-  
-`;
-const Container = styled.div`
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -64,13 +52,8 @@ const GalleryItem = styled.img`
 
 function Gallery({ data }) {
 
-  if(!data) {
-    return null;
-  }
-
   return (
     <Wrapper>
-      <Container>
         <Grid>
           {
             data.map((item, index) => (
@@ -80,7 +63,6 @@ function Gallery({ data }) {
             ))
           }
         </Grid>
-      </Container>
     </Wrapper>
   )
 }

@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     color: #506473;
+    //overflow-x: hidden;
   }
   
   #__next {

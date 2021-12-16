@@ -2,31 +2,30 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 import useFetch from "../hooks/useFetch";
 import Content from "./Content";
-import ServicesList from "./List";
+import ServicesList from "./ServicesList";
+import OriginalWrapper from "../common/Wrapper";
 
 
-const Wrapper = styled.div`
-  padding: clamp(100px, calc(100px + 100 * ((100vw - 1280px) / 640)), 150px)
-           clamp(100px, calc(100px + 200 * ((100vw - 1280px) / 640)), 300px)
-  ;
+const Wrapper = styled(OriginalWrapper)`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  max-width: 1920px;
-  margin: 0 auto;
+  position: relative;
 
-  @media (max-width: 768px) {
-    padding: 50px;
+  :before {
+    content: '';
+    background-color: #EDEFF1;
+    width: 100vw;
+    left: calc(50% - 50vw);
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
   }
 `;
 
-const Background = styled.div`
-  width: 100%;
-  background-color: #EDEFF1;
-`;
-
 function Services() {
-  const [activeSection, setActiveSection] = useState(0);
-  const [activeCategory, setActiveCategory] = useState('brand');
+  const [activeSection, setActiveSection] = useState({category: 'brand', index: 0});
   const [isAnimating, setIsAnimating] = useState(false);
   const { data, loading } = useFetch('/api/services');
 
@@ -35,13 +34,14 @@ function Services() {
   }
 
   return (
-    <Background>
       <Wrapper>
-        <Content activeSection={data[activeCategory][activeSection]} isAnimating={isAnimating}/>
+        <Content activeSection={data[activeSection.category][activeSection.index]} isAnimating={isAnimating}/>
         <ServicesList
-          onChange={(key, index) => {
-            setActiveSection(index);
-            setActiveCategory(key);
+          onChange={(category, index) => {
+            setActiveSection({
+              category,
+              index
+            });
           }}
           data={data}
           active={activeSection}
@@ -49,7 +49,6 @@ function Services() {
           stopAnimation={() => setIsAnimating(false)}
         />
       </Wrapper>
-    </Background>
   );
 };
 
